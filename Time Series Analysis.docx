@@ -1,4 +1,4 @@
-1. BEGINNER'S GUIDE TO TIME SERIES ANALYSIS
+###1. BEGINNER'S GUIDE TO TIME SERIES ANALYSIS
 Url: [https://www.quantstart.com/articles/Beginners-Guide-to-Time-Series-Analysis]
 Note: 
 Time series analysis attempts to understand the past and predict the future.
@@ -15,3 +15,10 @@ Model:
   - Non-Stationary - ARIMA, ARCH, GARCH
   - Multivariate Modeling
   - State-Space Models
+
+###2.SERIAL CORRELATION IN TIME SERIES ANALYSIS
+Url: [https://www.quantstart.com/articles/Serial-Correlation-in-Time-Series-Analysis]
+Note:
+  - Serial Correlation = Autocorrelation
+  - Improve the realism of any simulated time series based on the model.
+  - 
