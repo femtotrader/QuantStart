@@ -1,0 +1,11 @@
+setwd("/Users/hutianyou/Documents/Python/QuantStart")
+getwd()
+help(rnorm)
+# Simple covariance
+set.seed(1)
+x = seq(1,100) + 20.0*rnorm(1:100)
+set.seed(2)
+y = seq(1,100) + 20.0*rnorm(1:100)
+plot(x,y)
+cov(x,y)
+cor(x,y)
