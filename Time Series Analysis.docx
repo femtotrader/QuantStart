@@ -1,1 +1,8 @@
-
+Url: https://www.quantstart.com/articles/Beginners-Guide-to-Time-Series-Analysis
+Note: 
+Time series analysis attempts to understand the past and predict the future.
+Random walk is described as a DTSP.
+Trends.
+Seasonal Variation.
+Serial Correlation. 
+R has many time series libraries.
