@@ -80,6 +80,7 @@ AR(p) is not always stationary.
 * Second Order Properties- Yule-Walker equations.
 ? Maximum Likelihood
 ? Why log returns are prefered: [https://quantivity.wordpress.com/2011/02/21/why-log-returns/]
+a
 
   
   
