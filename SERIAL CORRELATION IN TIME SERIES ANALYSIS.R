@@ -9,3 +9,82 @@ y = seq(1,100) + 20.0*rnorm(1:100)
 plot(x,y)
 cov(x,y)
 cor(x,y)
+
+set.seed(1)
+w = rnorm(1000)
+acf(w)
+
+#Random Walk
+set.seed(4)
+x = w = rnorm(1000)
+for (t in 2:1000) x[t] = x[t-1] + w[t]
+plot(x, type = 'l')
+acf(x)
+acf(diff(x))
+
+install.packages('quantmod')
+require('quantmod')
+getSymbols('MSFT', src='yahoo')
+MSFT
+Op(MSFT)
+acf(diff(Ad(MSFT)), na.action = na.omit)
+
+getSymbols('^GSPC', src = 'yahoo')
+acf(diff(Ad(GSPC)), na.action = na.omit)
+
+#4.AUTOREGRESSIVE MOVING AVERAGE ARMA(P, Q) MODELS FOR TIME SERIES ANALYSIS - PART 1
+###AR(p)
+set.seed(1)
+x = w =rnorm(100)
+for (t in 2:100) x[t] = 0.6*x[t-1] + w[t]
+layout(1:2)
+plot(x, type='l')
+acf(x)
+x.ar = ar(x, method = 'mle')
+x.ar$order
+typeof(x.ar)
+x.ar$ar
+x.ar
+help(ar)
+x.ar$ar + c(-1.96, 1.96)*sqrt(x.ar$asy.var.coef)
+makeAR1 = function(para){
+  set.seed(1)
+  x = w =rnorm(100)
+  for (t in 2:100) x[t] = para*x[t-1] + w[t]
+  layout(1:2)
+  plot(x, type='l')
+  acf(x)
+  return (x)
+}
+
+x = makeAR1(-0.6)
+x.ar = ar(x, method="mle")
+x.ar$order
+x.ar$ar
+x.ar$ar + c(-1.96, 1.96)*sqrt(x.ar$asy)
+
+makeAR2 = function(para1, para2){
+  set.seed(1)
+  x = w =rnorm(100)
+  for (t in 3:100) x[t] = para1*x[t-1] +para2*x[t-2] + w[t]
+  layout(1:2)
+  plot(x, type='l')
+  acf(x)
+  return (x)
+}
+
+x = makeAR2(0.666, -0.333)
+x.ar = ar(x, method="mle")
+x.ar$order
+x.ar$ar
+require('quantmod')
+getSymbols('AMZN')
+help("getSymbols")
+help(layout)
+plot(Cl(AMZN))
+amznrt = diff(log(Cl(AMZN)))
+plot(amznrt)
+acf(amznrt, na.action = na.omit)
+amznrt.ar = ar(amznrt, na.action = na.omit)
+amznrt.ar$order
+amznrt.ar$ar
