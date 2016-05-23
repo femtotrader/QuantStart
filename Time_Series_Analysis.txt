@@ -59,6 +59,28 @@ A random walk is non-stationary.
 
 #4.AUTOREGRESSIVE MOVING AVERAGE ARMA(P, Q) MODELS FOR TIME SERIES ANALYSIS - PART 1
 Url: [https://www.quantstart.com/articles/Autoregressive-Moving-Average-ARMA-p-q-Models-for-Time-Series-Analysis-Part-1]
+Financial time series posses a Volatility clustering
+OR called conditional heteroskedasticity.
+AR, MR, ARMA are not conditional heteroskedasticity.
+###Strict Stationary.
+  > In mathematics and statistics, a stationary process (or strict(ly) stationary process or strong(ly) stationary process) is a stochastic process whose joint probability distribution does not change when shifted in time. Consequently, parameters such as the mean and variance, if they are present, also do not change over time and do not follow any trends.
+  > Strict Stationary. A time series model is strictly stationary if the joint statistical distribution of the elements xt1->xtn is the same as that of xt1+m->xtn+m.
+    One can think of this definition as simply that the distribution of the time series is unchanged for any abritrary shift in time.
+###Akaike Information Criterion (AIC)
+AIC is a tool to aid in model selection.
+Information Theory: [https://en.wikipedia.org/wiki/Information_theory]
+AIC: L maximised the likelihood, k parameter, AIC is given by: AIC = -2log(L) + 2k
+
+### AR of order p
+Autoregressive on order p
+x_t = a_1*x_t-1 + ... + a_p*x_t-p + w_t
+AR is an extension of random walk.
+AR(p) is not always stationary. 
+* Use characteristic equation to determine whether an AR process is stationary or not. We need al the absolute values of the roots of this equation to exceed unity.
+* Second Order Properties- Yule-Walker equations.
+? Maximum Likelihood
+? Why log returns are prefered: [https://quantivity.wordpress.com/2011/02/21/why-log-returns/]
+
   
   
   
