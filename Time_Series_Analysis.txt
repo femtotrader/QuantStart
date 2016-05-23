@@ -54,6 +54,11 @@ Backward Shift and Difference Operators
 Discrete White Noise
 Gaussian White Noise
 
+Random Walk
+A random walk is non-stationary.
+
+#4.AUTOREGRESSIVE MOVING AVERAGE ARMA(P, Q) MODELS FOR TIME SERIES ANALYSIS - PART 1
+Url: [https://www.quantstart.com/articles/Autoregressive-Moving-Average-ARMA-p-q-Models-for-Time-Series-Analysis-Part-1]
   
   
   
