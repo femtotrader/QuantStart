@@ -1,4 +1,5 @@
 #1. BEGINNER'S GUIDE TO TIME SERIES ANALYSIS
+Basic Concepts
 Url: [https://www.quantstart.com/articles/Beginners-Guide-to-Time-Series-Analysis]
 Note: 
 Time series analysis attempts to understand the past and predict the future.
@@ -17,6 +18,7 @@ Model:
   - State-Space Models
 
 #2.SERIAL CORRELATION IN TIME SERIES ANALYSIS
+Use ACF to detect trend and seasonality effects
 Url: [https://www.quantstart.com/articles/Serial-Correlation-in-Time-Series-Analysis]
 Note:
   - Serial Correlation = Autocorrelation
@@ -31,9 +33,32 @@ Second Order Stationary
 Sample autocorrivance and sample autocorrelation 
 Correlogram is a plot of autocorrelation functionfor sequential values of lag k from 1 to n.
 
+There are a few notable features of the correlogram plot in R:
+  > Firstly, since the sample correlation of lag k=0k=0 is given by r0=c0c0=1r0=c0c0=1 we will always have a line of height equal to unity at lag k=0k=0 on the plot. In fact, this provides us with a reference point upon which to judge the remaining autocorrelations at subsequent lags. Note also that the y-axis ACF is dimensionless, since correlation is itself dimensionless.
+  > The dotted blue lines represent boundaries upon which if values fall outside of these, we have evidence against the null hypothesis that our correlation at lag kk, rkrk, is equal to zero at the 5% level. However we must take care because we should expect 5% of these lags to exceed these values anyway! Further we are displaying correlated values and hence if one lag falls outside of these boundaries then proximate sequential values are more likely to do so as well. In practice we are looking for lags that may have some underlying reason for exceeding the 5% level. For instance, in a commodity time series we may be seeing unanticipated seasonality effects at certain lags (possibly monthly, quarterly or yearly intervals).
+From Correlogram, we could tell trend and seasonality effects.
 
+###3. WHITE NOISE AND RANDOM WALKS IN TIME SERIES ANALYSIS
 
+Url:[https://www.quantstart.com/articles/White-Noise-and-Random-Walks-in-Time-Series-Analysis]
+Let's summarise the general process we will be following throughout the series:
+  >Outline a hypotheis about a particular time series and its behaviour
+  >Obtain the correlogram of the time series (perhaps using R or Python libraries) and assess its serial correlation
+  >Use our knowledge of time series models and fit an appropriate model to reduce the serial correlation in the residuals (see below for a definition) of the model and its time series
+  >Refine the fit until no correlation is present and use mathematical criteria to assess the model fit
+  >Use the model and its second-order properties to make forecasts about future values
+  >Assess the accuracy of these forecasts using statistical techniques (such as confusion matrices, ROC curves for classification or regressive metrics such as MSE, MAPE etc)
+  >Iterate through this process until the accuracy is optimal and then utilise such forecasts to create trading strategies
+White Noise, RANDOM WALK
+Backward Shift and Difference Operators
+Discrete White Noise
+Gaussian White Noise
 
+  
+  
+  
+  
+  
 
 
 
