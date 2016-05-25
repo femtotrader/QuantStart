@@ -83,6 +83,8 @@ AR(p) is not always stationary.
 When the fitted model has AR(2), you need to be careful and check the confidence interval for both of the coefficients. If 0 is in the confidence interval.
 AR does not take into account of volatility clustering. While ARCH and GARCH accounts for this.
 
+#5.AUTOREGRESSIVE MOVING AVERAGE ARMA(P, Q) MODELS FOR TIME SERIES ANALYSIS - PART 2
+
   
   
   
