@@ -136,8 +136,47 @@ for (t in 4:1000) x[t] = w[t] + 0.6*w[t-1] + 0.4*w[t-2] + 0.3*w[t-3]
 layout(1:2)
 plot(x, type = 'l')
 acf(x)
+x.ma <- arima(x, order = c(0,0,3))
+x.ma$coef[1] + c(-1.96,1.96)*0.030
+x.ma$coef[2] + c(-1.96,1.96)*0.0349
+x.ma$coef[3] + c(-1.96,1.96)*0.0318
+# Fit a MA(1,2,3) model to AMZN data
+# MA(1)
+require(quantmod)
+getSymbols("AMZN")
+amznrt = diff(log(Cl(AMNZ)))
+amznrt.ma <- arima(amznrt, order = c(0,0,1))
+amznrt.ma
+acf(amznrt.ma$res[-1])
+#MA(2)
+#MA(2) is capturing a lot os the autocorrelation, but not all of the long-memor effects
+amznrt.ma <- arima(amznrt, order = c(0,0,2))
+amznrt.ma
+acf(amznrt.ma$res[-1])
+#MA(3)
+amznrt.ma <- arima(amznrt, order = c(0,0,3))
+amznrt.ma
+acf(amznrt.ma$res[-1])
 
-
+#S&P500
+#MA(1)
+getSymbols("^GSPC")
+gspcrt <- diff(log(Cl(GSPC)))
+gspcrt.ma <- arima(gspcrt, order=c(0,0,1))
+gspcrt.ma
+acf(gspcrt.ma$res[-1])
+#MA(2)
+getSymbols("^GSPC")
+gspcrt <- diff(log(Cl(GSPC)))
+gspcrt.ma <- arima(gspcrt, order=c(0,0,2))
+gspcrt.ma
+acf(gspcrt.ma$res[-1])
+#MA(3)
+getSymbols("^GSPC")
+gspcrt <- diff(log(Cl(GSPC)))
+gspcrt.ma <- arima(gspcrt, order=c(0,0,3))
+gspcrt.ma
+acf(gspcrt.ma$res[-1])
 
 
 
