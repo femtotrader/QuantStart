@@ -84,7 +84,10 @@ When the fitted model has AR(2), you need to be careful and check the confidence
 AR does not take into account of volatility clustering. While ARCH and GARCH accounts for this.
 
 #5.AUTOREGRESSIVE MOVING AVERAGE ARMA(P, Q) MODELS FOR TIME SERIES ANALYSIS - PART 2
-
+AR - momentum and mean-reversion in stock trading.
+MR - a surprise earnings announcement or unexpected event
+ARMA takes into account of both, but without considering volatility clustering. We need to wait for ARCH and GARCH.
+That is, an ARMA model will often require fewer parameters than an AR(p) or MA(q) model alone.
   
   
   

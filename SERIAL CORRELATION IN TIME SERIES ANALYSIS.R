@@ -178,6 +178,27 @@ gspcrt.ma <- arima(gspcrt, order=c(0,0,3))
 gspcrt.ma
 acf(gspcrt.ma$res[-1])
 
+#6.AUTOREGRESSIVE MOVING AVERAGE ARMA(P, Q) MODELS FOR TIME SERIES ANALYSIS - PART 3
+# ARMA(1,1)
+set.seed(1)
+x <- arima.sim(n=1000, model=list(ar=0.5, ma=-0.5))
+plot(x)
+acf(x)
+arima(x, order=c(1,0,1))
+# ARMA(2,2)
+set.seed(1)
+x <- arima.sim(n=1000, model=list(ar=c(0.5, -0.25), ma=c(0.5, -0.3)))
+plot(x)
+acf(x)
+arima(x, order=c(2,0,2))
+# Choosing the best model
+set.seed(3)
+x <- arima.sim(n=1000, model=list(ar=c(0.5,-0.25,0.4), ma=c(0.5, -0.3)))
+
+
+
+
+
 
 
 
