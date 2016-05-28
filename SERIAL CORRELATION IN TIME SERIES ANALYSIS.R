@@ -195,12 +195,42 @@ arima(x, order=c(2,0,2))
 set.seed(3)
 x <- arima.sim(n=1000, model=list(ar=c(0.5,-0.25,0.4), ma=c(0.5, -0.3)))
 
+final.aic <- Inf
+final.order <- c(0,0,0)
+for (i in 0:4) for (j in 0:4){
+  current.aic <- AIC(arima(x, order = c(i, 0, j)))
+  if (current.aic < final.aic){
+    final.aic <- current.aic
+    final.order <- c(i, 0, j)
+    final.arma <- arima(x, order=final.order)
+  }
+}
+final.aic
+final.order
+final.arma
+# The following two formulas are consistent
+acf(resid(final.arma))
+acf(final.arma$res)
+Box.test(resid(final.arma), lag = 20, type="Ljung-Box")
+# Financial Data
+require(quantmod)
+getSymbols("^GSPC")
+sp = diff(log(Cl(GSPC)))
 
-
-
-
-
-
+spfinal.aic <- Inf
+spfinal.order <- c(0, 0, 0)
+for (i in 0:4) for (j in 0:4){
+  spcurrent.aic <- AIC(arima(sp, order=c(i, 0, j)))
+  if(spcurrent.aic < spfinal.aic){
+    spfinal.aic <- spcurrent.aic
+    spfinal.order <- c(i,0,j)
+    spfinal.arma <- arima(sp, order=c(i, 0, j))
+  }
+}
+spfinal.order
+acf(resid(spfinal.arma), na.action = na.omit)
+Box.test(resid(spfinal.arma), lag=20, type="Ljung-Box")
+###Hence there is additional autocorrelation in the residuals that is not explained by the fitted ARMA(3,3) model.
 
 
 
