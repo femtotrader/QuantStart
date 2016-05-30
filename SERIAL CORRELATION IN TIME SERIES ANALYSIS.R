@@ -232,5 +232,53 @@ acf(resid(spfinal.arma), na.action = na.omit)
 Box.test(resid(spfinal.arma), lag=20, type="Ljung-Box")
 ###Hence there is additional autocorrelation in the residuals that is not explained by the fitted ARMA(3,3) model.
 
+#6.AUTOREGRESSIVE INTEGRATED MOVING AVERAGE ARIMA(P, D, Q) MODELS FOR TIME SERIES ANALYSIS
+set.seed(2)
+x <- arima.sim(list(order=c(1,1,1), ar=0.6, ma=-0.5), n=1000)
+plot(x)
+x.arima <- arima(x, order=c(1, 1, 1))
+x.arima
+0.6470 + c(-1.96, 1.96)*0.1065
+-0.5165 + c(-1.96, 1.96)*0.1189
+acf(resid(x.arima))
+Box.test(resid(x.arima), lag=20, type="Ljung-Box")
+##Financial Data
+install.packages("forecast")
+library(forecast)
+help(library)
+require(quantmod)
+getSymbols("AMZN", from="2013-01-01")
+amzn = diff(log(Cl(AMZN)))
+azfinal.aic <- Inf
+azfinal.order <- c(0,0,0)
+for (p in 1:4) for (d in 0:1) for ( q in 1:4) {
+  azcurrent.aic = AIC(arima(amzn, order=c(p,d,q)))
+  if(azcurrent.aic < azfinal.aic){
+    azfinal.aic = azcurrent.aic
+    azfinal.order = c(p,d,q)
+    azfinal.arima = arima(amzn, order = azfinal.order)
+  }
+}
+azfinal.order
+acf(resid(azfinal.arima), na.action = na.omit)
+Box.test(resid(azfinal.arima), lag=20, type="Ljung-Box")
+plot(forecast(azfinal.arima, h=25))
+
+getSymbols("^GSPC", from="2013-01-01")
+sp = diff(log(Cl(GSPC)))
+spfinal.aic <- Inf
+spfinal.order <- c(0,0,0)
+for (p in 1:4) for (d in 0:1) for ( q in 1:4) {
+  spcurrent.aic = AIC(arima(sp, order=c(p,d,q)))
+  if(spcurrent.aic < spfinal.aic){
+    spfinal.aic = spcurrent.aic
+    spfinal.order = c(p,d,q)
+    spfinal.arima = arima(sp, order = spfinal.order)
+  }
+}
+spfinal.order
+acf(resid(spfinal.arima), na.action = na.omit)
+Box.test(resid(spfinal.arima), lag=20, type="Ljung-Box")
+plot(forecast(spfinal.arima, h=25))
 
 
