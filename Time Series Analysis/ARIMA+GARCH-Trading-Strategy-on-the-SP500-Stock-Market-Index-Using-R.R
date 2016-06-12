@@ -76,9 +76,33 @@ for (d in 0:4){
 }
 
 write.csv(forecasts, file="forecasts.csv", row.names = FALSE)
+getwd()
+spArimaGarch = as.xts(
+  read.zoo(
+    file="forecasts_new.csv", format = "%Y-%m-%d", header=F, sep=","
+  )
+)
+# Create the ARIMA+GARCH returns
+spIntersect = merge( spArimaGarch[,1], spReturns, all=F )
+spArimaGarchReturns = spIntersect[,1] * spIntersect[,2]
 
+# Create the backtests for ARIMA+GARCH and Buy & Hold
+spArimaGarchCurve = log( cumprod( 1 + spArimaGarchReturns ) )
+spBuyHoldCurve = log( cumprod( 1 + spIntersect[,2] ) )
+spCombinedCurve = merge( spArimaGarchCurve, spBuyHoldCurve, all=F )
 
-
-
-
-
+# Plot the equity curves
+xyplot( 
+  spCombinedCurve,
+  superpose=T,
+  col=c("darkred", "darkblue"),
+  lwd=2,
+  key=list( 
+    text=list(
+      c("ARIMA+GARCH", "Buy & Hold")
+    ),
+    lines=list(
+      lwd=2, col=c("darkred", "darkblue")
+    )
+  )
+)
